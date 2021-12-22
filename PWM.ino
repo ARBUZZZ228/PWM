@@ -8,7 +8,6 @@ class ButtonLED
   private:
     bool lastButton_;
     bool currentButton_;
-    bool ledOn_;
     int currState_;
 
     bool debounce(bool lastState)
@@ -44,7 +43,7 @@ class ButtonLED
       analogWrite(GREEN_LED, 0);
       analogWrite(BLUE_LED, 10);
       
-      while (brightness < 128) 
+      while (brightness < 256) 
       {
         if (millis() % 50 == 0)
         {
@@ -69,7 +68,7 @@ class ButtonLED
       analogWrite(RED_LED, 0);
       analogWrite(BLUE_LED, 20);
       
-      while (brightness < 128)
+      while (brightness < 256)
       {
         if (millis() % 50 == 0)
         {
@@ -100,7 +99,6 @@ class ButtonLED
     {
       lastButton_ = 0;
       currentButton_ = 0;
-      ledOn_ = 0;
       currState_ = 0;
     }
     
