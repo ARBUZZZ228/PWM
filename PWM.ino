@@ -16,7 +16,7 @@ class ButtonLED
       bool currentState = digitalRead(BUTTON);
       if (lastState != currentState);
       {
-        delay(20);
+        delay(10);
       }
       return digitalRead(BUTTON);
     }
@@ -40,37 +40,51 @@ class ButtonLED
     
     void pwmPink()
     {
-      for (short int i = 0; i < 128; i++)
+      int brightness = 0;
+      analogWrite(GREEN_LED, 0);
+      analogWrite(BLUE_LED, 10);
+      
+      while (brightness < 128) 
       {
-        analogWrite(RED_LED, i);
-        analogWrite(GREEN_LED, 0);
-        analogWrite(BLUE_LED, 10);
-        delay(20);
+        if (millis() % 50 == 0)
+        {
+          analogWrite(RED_LED, brightness);
+          brightness++;
+        }
       }
-      for (short int i = 127; i >= 0; i--)
+
+      while (brightness >= 0)
       {
-        analogWrite(RED_LED, i);
-        analogWrite(GREEN_LED, 0);
-        analogWrite(BLUE_LED, 10);
-        delay(20);
+        if (millis() % 50 == 0)
+        {
+          analogWrite(RED_LED, brightness);
+          brightness--;
+        }
       }
     }
 
     void pwmLemon()
     {
-      for (short int i = 0; i < 128; i++)
+      int brightness = 0;
+      analogWrite(RED_LED, 0);
+      analogWrite(BLUE_LED, 20);
+      
+      while (brightness < 128)
       {
-        analogWrite(RED_LED, 0);
-        analogWrite(GREEN_LED, i);
-        analogWrite(BLUE_LED, 20);
-        delay(20);
+        if (millis() % 50 == 0)
+        {
+          analogWrite(GREEN_LED, brightness);
+          brightness++;
+        }
       }
-      for (short int i = 127; i >= 0; i--)
+      
+      while (brightness >= 0)
       {
-        analogWrite(RED_LED, 0);
-        analogWrite(GREEN_LED, i);
-        analogWrite(BLUE_LED, 20);
-        delay(20);
+        if (millis() % 50 == 0)
+        {
+          analogWrite(GREEN_LED, brightness);
+          brightness--;
+        }
       }
     }
 
